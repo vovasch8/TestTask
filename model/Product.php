@@ -1,6 +1,5 @@
 <?php
 
-require_once "enum/Sort.php";
 
 class Product
 {
