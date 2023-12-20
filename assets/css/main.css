@@ -1,0 +1,68 @@
+.header, .footer {
+    background: darkslategray;
+    color: white;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.category-box {
+    margin-top: 10px;
+}
+
+.category-box li{
+    width: 100%;
+    list-style-type: none;
+    border: 1px solid lightgrey;
+    background: darkslategray;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.category-box li:hover {
+    background: gold;
+    cursor: pointer;
+}
+
+.products {
+    border: 1px solid darkslategray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.photo {
+    height: 200px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.product {
+    border: 1px solid darkslategray;
+    border-radius: 5px;
+}
+
+.product:hover {
+    background: gold;
+}
+
+.product button {
+    cursor: pointer;
+}
+
+.counter-products {
+    color: white;
+    background: darkcyan;
+    float: right;
+    padding: 3px;
+    border-radius: 35%;
+    margin-right: 10px;
+}
+
+#product-box {
+    min-height: 75vh;
+}
