@@ -11,23 +11,35 @@ uasort($categories, function ($a, $b) {
     return $a['parent_id'] <=> $b['parent_id'];
 });
 
-$result = [];
+$result = createTree($categories);
 
-// Задаємо формат відображення як ключ значення з ключем parent_id в масив $result і першим рівнем вложенності
-foreach ($categories as $category) {
-    $result[$category['parent_id']][$category['categories_id']] = $category['categories_id'];
+// Створюємо дерево вкладень
+function createTree($arr) {
+    $parents_arr = array();
+    foreach($arr as $key => $item) {
+        $parents_arr[$item['parent_id']][$item['categories_id']] = $item['categories_id'];
+    }
+    $treeElem = $parents_arr[0];
+
+    generateElemTree($treeElem, $parents_arr);
+
+    return $treeElem;
 }
-// Видаляємо категорії які входять в масив з ключем 0
-unset($result[0]);
-// Формуємо вложеність масивів з видаленням значень з попереднього масиву якщо він входить як вложення
-foreach ($result as $rk => $rc) {
-    foreach ($rc as $key => $rvalue) {
-        if (isset($result[$key])) {
-            $result[$rk][$key] = $result[$key];
-            unset($result[$key]);
+
+// Формуємо вложеність масивів
+function generateElemTree(&$treeElem, $parents_arr) {
+    foreach($treeElem as $key => $item) {
+
+        if (!is_array($item)) {
+            $treeElem[$key] = $item;
+        }
+        if (array_key_exists($key, $parents_arr)) {
+            $treeElem[$key] = $parents_arr[$key];
+            generateElemTree($treeElem[$key], $parents_arr);
         }
     }
 }
+
 // Виводимо результуючий масив
 echo "<pre>";
 print_r($result);
